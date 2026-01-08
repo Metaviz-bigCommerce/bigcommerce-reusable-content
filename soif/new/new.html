@@ -1,0 +1,369 @@
+<body>
+    <section class="digital-brochures-section">
+        <div class="digital-brochures-container">
+            <!-- Header -->
+            <div class="digital-brochures-header">
+                <h1 class="digital-brochures-title">Digital Brochures</h1>
+                <p class="digital-brochures-intro">
+                    Prefer working digitally? Browse and download our SOIF brochures in PDF format. From the full replica of
+                    our physical book to sector-specific guides, these resources are ideal for sharing with clients and for
+                    early project decisions.
+                </p>
+            </div>
+
+            <!-- Brochure Cards Grid -->
+            <div class="digital-brochures-grid" id="digital-brochures-grid">
+                <!-- Cards will be dynamically inserted here -->
+            </div>
+        </div>
+    </section>
+
+    <script>
+        const mainDiv = document.getElementById('digital-brochures-grid');
+
+        const cards = [
+            {
+                title: 'SOIF 2025 Swatch book',
+                description: 'A digital replica of our physical SOIF Swatch Book, showcasing all finishes for easy browsing, sharing, and early project planning.',
+                image: 'https://cdn11.bigcommerce.com/s-ljaupabhlc/images/stencil/original/image-manager/screenshot-2025-05-05-at-12.07.06-pm.png?t=1746428859',
+                url: 'https://store-ljaupabhlc.mybigcommerce.com/content/Surfex%202025%20Swatch_compressed.pdf'
+            },
+            {
+                title: 'Hotel Showcase visual book 2025',
+                description: 'A curated showcase of SOIF finishes used across hotel bedrooms, bathrooms, receptions, and communal areas, highlighting real-world applications and design possibilities within hospitality environments.',
+                image: 'https://cdn11.bigcommerce.com/s-ljaupabhlc/images/stencil/original/image-manager/screenshot-2025-05-05-at-12.05.25-pm.png?t=1746428941',
+                url: 'https://store-ljaupabhlc.mybigcommerce.com/content/support_1739412358.pdf'
+            },
+            {
+                title: 'SOIF Visual Book 2025',
+                description: 'A visual guide showcasing SOIF finishes through detailed imagery, helping explore textures, colours, and design effects across a wide range of applications.',
+                image: 'https://cdn11.bigcommerce.com/s-ljaupabhlc/images/stencil/original/image-manager/screenshot-2025-05-05-at-12.05.58-pm.png?t=1746428935',
+                url: 'https://store-ljaupabhlc.mybigcommerce.com/content/support_1739412394.pdf'
+            },
+            {
+                title: 'Surfex Commercial Brochure',
+                description: 'A comprehensive guide to SOIF, covering who we are, what we do, technical capabilities, applications, and the full range of possibilities across sectors and projects.',
+                image: 'https://cdn11.bigcommerce.com/s-ljaupabhlc/images/stencil/original/image-manager/screenshot-2025-01-07-141622.png?t=1736241420',
+                url: 'https://store-ljaupabhlc.mybigcommerce.com/content/Surfex%20Commercial%20Brochure.pdf'
+            },
+            {
+                title: 'SOIF Fire Doors',
+                description: 'A complete overview of SOIF\'s technical performance, applications, sectors and project capabilities.',
+                image: 'https://cdn11.bigcommerce.com/s-ljaupabhlc/images/stencil/original/image-manager/screenshot-2024-07-30-163941.png?t=1722339629',
+                url: 'https://store-ljaupabhlc.mybigcommerce.com/content/Surfex_Fire%20Doors.pdf'
+            }
+        ];
+
+        function getColumnsPerRow() {
+            const width = window.innerWidth;
+            if (width >= 992) return 3;
+            if (width >= 576) return 2;
+            return 1;
+        }
+
+        function equalizeCardHeights() {
+            const allCards = mainDiv.querySelectorAll('.digital-brochure-card');
+            if (allCards.length === 0) return;
+
+            // Reset heights to auto to get natural heights
+            allCards.forEach(card => {
+                card.style.height = 'auto';
+            });
+
+            // Wait for next frame to ensure heights are calculated
+            requestAnimationFrame(() => {
+                let maxHeight = 0;
+                
+                // Find the maximum height
+                allCards.forEach(card => {
+                    const cardHeight = card.offsetHeight;
+                    if (cardHeight > maxHeight) {
+                        maxHeight = cardHeight;
+                    }
+                });
+
+                // Apply the maximum height to all cards
+                if (maxHeight > 0) {
+                    allCards.forEach(card => {
+                        card.style.height = maxHeight + 'px';
+                    });
+                }
+            });
+        }
+
+        function centerLastRow() {
+            // Remove any existing spacers
+            const existingSpacers = mainDiv.querySelectorAll('.last-row-spacer');
+            existingSpacers.forEach(spacer => spacer.remove());
+
+            const allCards = mainDiv.querySelectorAll('.digital-brochure-card');
+            if (allCards.length === 0) return;
+
+            const columnsPerRow = getColumnsPerRow();
+            const totalCards = allCards.length;
+            const cardsInLastRow = totalCards % columnsPerRow;
+
+            // If last row is incomplete, add spacer before the last row to center it
+            if (cardsInLastRow > 0 && cardsInLastRow < columnsPerRow) {
+                const firstCardInLastRowIndex = totalCards - cardsInLastRow;
+                const emptySlots = columnsPerRow - cardsInLastRow;
+                
+                // Calculate spacer width: half of the empty slots
+                // For 2 columns: if 1 card, need 1 empty slot, spacer = 0.5 slot = 25% width
+                // For 3 columns: if 1 card, need 2 empty slots, spacer = 1 slot = 33.333% width
+                // For 3 columns: if 2 cards, need 1 empty slot, spacer = 0.5 slot = 16.666% width
+                
+                const spacer = document.createElement('div');
+                spacer.classList.add('last-row-spacer');
+                
+                // Add specific class based on layout
+                if (columnsPerRow === 2 && cardsInLastRow === 1) {
+                    spacer.classList.add('spacer-2-col');
+                } else if (columnsPerRow === 3 && cardsInLastRow === 1) {
+                    spacer.classList.add('spacer-3-col-1');
+                } else if (columnsPerRow === 3 && cardsInLastRow === 2) {
+                    spacer.classList.add('spacer-3-col-2');
+                }
+                
+                // Insert spacer before the first card of the last row
+                allCards[firstCardInLastRowIndex].before(spacer);
+            }
+        }
+
+        // Create cards
+        cards.forEach(card => {
+            const cardDiv = document.createElement('div');
+            cardDiv.classList.add('digital-brochure-card');
+            cardDiv.innerHTML = `
+                <div class="digital-brochure-image">
+                    <img src="${card.image}" alt="${card.title}" loading="lazy" />
+                </div>
+                <div class="digital-brochure-content">
+                    <h3 class="digital-brochure-title">${card.title}</h3>
+                    <p class="digital-brochure-description">${card.description}</p>
+                    <a href="${card.url}" target="_blank" class="digital-brochure-btn">
+                        View / Download PDF
+                    </a>
+                </div>
+            `;
+            mainDiv.appendChild(cardDiv);
+        });
+
+        // Wait for images to load, then equalize heights and center last row
+        const images = mainDiv.querySelectorAll('img');
+        let imagesLoaded = 0;
+        
+        if (images.length === 0) {
+            // No images, proceed immediately
+            equalizeCardHeights();
+            centerLastRow();
+        } else {
+            images.forEach(img => {
+                if (img.complete) {
+                    imagesLoaded++;
+                    if (imagesLoaded === images.length) {
+                        equalizeCardHeights();
+                        centerLastRow();
+                    }
+                } else {
+                    img.addEventListener('load', () => {
+                        imagesLoaded++;
+                        if (imagesLoaded === images.length) {
+                            equalizeCardHeights();
+                            centerLastRow();
+                        }
+                    });
+                    img.addEventListener('error', () => {
+                        imagesLoaded++;
+                        if (imagesLoaded === images.length) {
+                            equalizeCardHeights();
+                            centerLastRow();
+                        }
+                    });
+                }
+            });
+        }
+
+        // Re-calculate on window resize
+        let resizeTimeout;
+        window.addEventListener('resize', () => {
+            clearTimeout(resizeTimeout);
+            resizeTimeout = setTimeout(() => {
+                equalizeCardHeights();
+                centerLastRow();
+            }, 100);
+        });
+    </script>
+</body>
+
+   <style>
+
+        .digital-brochures-section {
+            padding: 4rem 2rem;
+            background-color: #2a2a2a;
+            min-height: 100vh;
+        }
+
+        .digital-brochures-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .digital-brochures-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .digital-brochures-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #ffd700;
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.02em;
+        }
+
+        .digital-brochures-intro {
+            font-size: 1.1rem;
+            color: #ffffff;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.7;
+        }
+
+        .digital-brochures-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            justify-content: flex-start;
+            align-items: stretch;
+        }
+
+        /* Below 576px: 1 card per row */
+        .digital-brochure-card {
+            flex: 0 0 100%;
+            max-width: 100%;
+        }
+
+        /* 576px to 992px: 2 cards per row */
+        @media (min-width: 576px) {
+            .digital-brochure-card {
+                flex: 0 0 calc(50% - 1rem);
+                max-width: calc(50% - 1rem);
+            }
+        }
+
+        /* Above 992px: 3 cards per row */
+        @media (min-width: 992px) {
+            .digital-brochure-card {
+                flex: 0 0 calc(33.333% - 1.334rem);
+                max-width: calc(33.333% - 1.334rem);
+            }
+        }
+
+        .digital-brochure-card {
+            background-color: #1a1a1a;
+            border-radius: 8px;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .digital-brochure-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .digital-brochure-image {
+            width: 100%;
+            height: 250px;
+            overflow: hidden;
+            background-color: #2a2a2a;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .digital-brochure-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .digital-brochure-card:hover .digital-brochure-image img {
+            transform: scale(1.05);
+        }
+
+        .digital-brochure-content {
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+            background-color: #ffffff;
+        }
+
+        .digital-brochure-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #000000;
+            margin-bottom: 0.75rem;
+            line-height: 1.4;
+        }
+
+        .digital-brochure-description {
+            font-size: 0.95rem;
+            color: #000000;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+            flex-grow: 1;
+        }
+
+        .digital-brochure-btn {
+            display: inline-block;
+            background-color: #ffd700;
+            color: #1a1a1a;
+            padding: 0.75rem 1.5rem;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            text-align: center;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            cursor: pointer;
+            border: none;
+        }
+
+        .digital-brochure-btn:hover {
+            background-color: #ffed4e;
+            transform: translateY(-2px);
+        }
+
+        .digital-brochure-btn:active {
+            transform: translateY(0);
+        }
+
+        /* Spacer for centering last row - takes up space to center incomplete rows */
+        .last-row-spacer {
+            flex: 0 0 0;
+            display: none;
+        }
+        
+        @media (min-width: 576px) {
+            .last-row-spacer.spacer-2-col {
+                display: block;
+                flex: 0 0 calc(25% - 1rem);
+            }
+        }
+        
+        @media (min-width: 992px) {
+            .last-row-spacer.spacer-3-col-1 {
+                display: block;
+                flex: 0 0 calc(33.333% - 1.334rem);
+            }
+            .last-row-spacer.spacer-3-col-2 {
+                display: block;
+                flex: 0 0 calc(16.666% - 0.667rem);
+            }
+        }
+    </style>

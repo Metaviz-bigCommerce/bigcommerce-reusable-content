@@ -1,0 +1,208 @@
+<section class="digital-brochures-section" >
+    <div class="digital-brochures-container">
+        <!-- Header -->
+        <div class="digital-brochures-header">
+            <h1 class="digital-brochures-title">Digital Brochures</h1>
+            <p class="digital-brochures-intro">
+                Prefer working digitally? Browse and download our SOIF brochures in PDF format. From the full replica of
+                our physical book to sector-specific guides, these resources are ideal for sharing with clients and for
+                early project decisions.
+            </p>
+        </div>
+
+        <!-- Brochure Cards Grid -->
+        <div class="digital-brochures-grid" id="digital-brochures-grid">
+
+        </div>
+    </div>
+</section><script>
+    const mainDiv = document.getElementById('digital-brochures-grid');
+
+    const cards = [
+        // {
+        //     title: 'Samsung Interior Film (SOIF) Warranty',
+        //     description: 'A full digital replica of our physical brochure, featuring over 500 finishes with imagery, codes and categories.',
+        //     image: 'https://cdn11.bigcommerce.com/s-ljaupabhlc/images/stencil/original/image-manager/h8.png?t=1755944308',
+        //     url: 'https://store-ljaupabhlc.mybigcommerce.com/content/Samsung%20Interior%20Film%20-%20SOIF%20-%20Warranty.pdf'
+        // },
+        // {
+        //     title: 'Samsung Interior Film (SOIF) – Technical Data',
+        //     description: 'A curated brochure showing SOIF in real hotel projects – guest rooms, lifts, corridors and public areas.',
+        //     image: 'https://cdn11.bigcommerce.com/s-ljaupabhlc/images/stencil/original/image-manager/h7.png?t=1755944307',
+        //     url: 'https://store-ljaupabhlc.mybigcommerce.com/content/Samsung%20Interior%20Film%20-%20SOIF%20-%20Technical%20Data.pdf'
+        // },
+        // {
+        //     title: 'Samsung Interior Film (SOIF) – Product Bulletin',
+        //     description: 'A highly visual inspiration booklet highlighting our most decorative woods, stones, metals and special textures.',
+        //     image: 'https://cdn11.bigcommerce.com/s-ljaupabhlc/images/stencil/original/image-manager/h6.png?t=1755944306',
+        //     url: 'https://store-ljaupabhlc.mybigcommerce.com/content/Samsung%20Interior%20Film%20-%20SOIF%20-%20Product%20Bulletin.pdf'
+        // },
+        // {
+        //     title: 'Surfex Interior Film – Anti-Bacterial Report',
+        //     description: 'All key info on SOIF fire door wrapping, including approved finishes, installation notes and project imagery.',
+        //     image: 'https://cdn11.bigcommerce.com/s-ljaupabhlc/images/stencil/original/image-manager/h5.png?t=1755943672',
+        //     url: 'https://store-ljaupabhlc.mybigcommerce.com/content/Anti%20Bacterial%20Report%20-%20Surfex%20Interior%20Film_compressed.pdf'
+        // },
+        // {
+        //     title: 'ISO 14001 Certification',
+        //     description: 'A complete overview of SOIF\'s technical performance, applications, sectors and project capabilities.',
+        //     image: 'https://cdn11.bigcommerce.com/s-ljaupabhlc/images/stencil/original/image-manager/h4.png?t=1755943674',
+        //     url: 'https://store-ljaupabhlc.mybigcommerce.com/content/ISO%2014001.pdf'
+        // },
+        // {
+        //     title: 'Hazardous Gas Test Report',
+        //     description: 'A complete overview of SOIF\'s technical performance, applications, sectors and project capabilities.',
+        //     image: 'https://cdn11.bigcommerce.com/s-ljaupabhlc/images/stencil/original/image-manager/h2.png?t=1755943680',
+        //     url: 'https://store-ljaupabhlc.mybigcommerce.com/content/Hazardous%20Gas%20Test.pdf'
+        // },
+        // {
+        //     title: 'ASTM D4060–19 Standard – Taber Abrader',
+        //     description: 'A complete overview of SOIF\'s technical performance, applications, sectors and project capabilities.',
+        //     image: 'https://cdn11.bigcommerce.com/s-ljaupabhlc/images/stencil/original/image-manager/h1.png?t=1755943683',
+        //     url: 'https://store-ljaupabhlc.mybigcommerce.com/content/ASTM%20D4060%20%E2%80%93%2019%20Standard%20for%20Taber%20Abrader.pdf'
+        // },
+        // {
+        //     title: 'ISO 9001 Certification',
+        //     description: 'A complete overview of SOIF\'s technical performance, applications, sectors and project capabilities.',
+        //     image: 'https://cdn11.bigcommerce.com/s-ljaupabhlc/images/stencil/original/image-manager/h3.png?t=1755943678',
+        //     url: 'https://store-ljaupabhlc.mybigcommerce.com/content/ISO%209001.pdf'
+        // },
+        // {
+        //     title: 'Technical Report 1 – Anti-Bacterial',
+        //     description: 'A complete overview of SOIF\'s technical performance, applications, sectors and project capabilities.',
+        //     image: 'https://cdn11.bigcommerce.com/s-ljaupabhlc/images/stencil/original/image-manager/screenshot-2024-07-12-155931.png?t=1720782186',
+        //     url: 'https://store-ljaupabhlc.mybigcommerce.com/content/Technical%201/Anti%20Bac.pdf'
+        // },
+        // {
+        //     title: 'CE Cert',
+        //     description: 'A complete overview of SOIF\'s technical performance, applications, sectors and project capabilities.',
+        //     image: 'https://cdn11.bigcommerce.com/s-ljaupabhlc/images/stencil/original/image-manager/screenshot-2024-07-12-160005.png?t=1720782188',
+        //     url: 'https://store-ljaupabhlc.mybigcommerce.com/content/Technical%201/CE%20Cert.pdf'
+        // },
+        // {
+        //     title: 'Heavy Chemical Report',
+        //     description: 'A complete overview of SOIF\'s technical performance, applications, sectors and project capabilities.',
+        //     image: 'https://cdn11.bigcommerce.com/s-ljaupabhlc/images/stencil/original/image-manager/screenshot-2024-07-12-160027.png?t=1720782189',
+        //     url: 'https://store-ljaupabhlc.mybigcommerce.com/content/Technical%201/Heavy%20Chemical%20Report.pdf'
+        // },
+        // {
+        //     title: 'Surfex Interior Film - UKCA',
+        //     description: 'A complete overview of SOIF\'s technical performance, applications, sectors and project capabilities.',
+        //     image: 'https://cdn11.bigcommerce.com/s-ljaupabhlc/images/stencil/original/image-manager/screenshot-2024-07-12-160039.png?t=1720782191',
+        //     url: 'https://store-ljaupabhlc.mybigcommerce.com/content/Technical%201/Surfex%20Interior%20Film%20-%20UKCA.pdf'
+        // },
+        // {
+        //     title: 'UKCA Cert',
+        //     description: 'A complete overview of SOIF\'s technical performance, applications, sectors and project capabilities.',
+        //     image: 'https://cdn11.bigcommerce.com/s-ljaupabhlc/images/stencil/original/image-manager/screenshot-2024-07-12-160100.png?t=1720782193',
+        //     url: 'https://store-ljaupabhlc.mybigcommerce.com/content/Technical%201/UKCA%20Cert.pdf'
+        // },
+      
+        // {
+        //     title: 'UKCA Cert',
+        //     description: 'A complete overview of SOIF\'s technical performance, applications, sectors and project capabilities.',
+        //     image: 'https://cdn11.bigcommerce.com/s-ljaupabhlc/images/stencil/original/image-manager/screenshot-2024-07-12-160326.png?t=1720782246',
+        //     url: 'https://store-ljaupabhlc.mybigcommerce.com/content/Technical%201/UKCA%20Cert.pdf'
+        // },
+        // {
+        //     title: 'ASTM D4060 – 19 Standard for Taber Abrader',
+        //     description: 'A complete overview of SOIF\'s technical performance, applications, sectors and project capabilities.',
+        //     image: 'https://cdn11.bigcommerce.com/s-ljaupabhlc/images/stencil/original/image-manager/screenshot-2024-07-12-160100.png?t=1720782193',
+        //     url: 'https://store-ljaupabhlc.mybigcommerce.com/content/Technical%201/ASTM%20D4060%20%E2%80%93%2019%20Standard%20for%20Taber%20Abrader.pdf'
+        // },
+        // {
+        //    title: 'Surfex Interior Film - Catalogue - Vol 1.2',
+        //    description: 'A complete overview of SOIF\'s technical performance, applications, sectors and project capabilities.',
+        //    image: 'https://cdn11.bigcommerce.com/s-ljaupabhlc/images/stencil/original/image-manager/screenshot-2024-07-12-160347.png?t=1720782248',
+        //    url: 'https://store-ljaupabhlc.mybigcommerce.com/content/Technical%201/Surfex%20Interior%20Film%20-%20Catalogue%20-%20Vol%201.2.pdf'
+        // },
+        // {
+        //     title: 'Surfex Interior Film - Technical Data Sheet',
+        //     description: 'A complete overview of SOIF\'s technical performance, applications, sectors and project capabilities.',
+        //     image: 'https://cdn11.bigcommerce.com/s-ljaupabhlc/images/stencil/original/image-manager/screenshot-2024-07-14-194203.png?t=1720968584',
+        //     url: 'https://store-ljaupabhlc.mybigcommerce.com/content/Surfex%20Interior%20Film%20-%20Technical%20Data%20.pdf'
+        // },
+      
+        // {
+        //     title: 'Surfex Interior Film - Warranty',
+        //     description: 'A complete overview of SOIF\'s technical performance, applications, sectors and project capabilities.',
+        //     image: 'https://cdn11.bigcommerce.com/s-ljaupabhlc/images/stencil/original/image-manager/screenshot-2024-07-14-194256.png?t=1720968586',
+        //     url: 'https://store-ljaupabhlc.mybigcommerce.com/content/Surfex%20Interior%20Film%20Warranty.pdf'
+        // },
+
+        // {
+        //     title: 'RENEW VERSION _ISO 14001 (~27 영문)',
+        //     description: 'A complete overview of SOIF\'s technical performance, applications, sectors and project capabilities.',
+        //     image: 'https://cdn11.bigcommerce.com/s-ljaupabhlc/images/stencil/original/image-manager/screenshot-2024-11-08-165725.png?t=1731067362',
+        //     url: 'https://store-ljaupabhlc.mybigcommerce.com/content/RENEW%20VERSION%20_ISO%2014001%20%28~27%20%E1%84%8B%E1%85%A7%E1%86%BC%E1%84%86%E1%85%AE%E1%86%AB%29.pdf'
+        // },
+        // {
+        //     title: 'SOIF Fire Doors',
+        //     description: 'A complete overview of SOIF\'s technical performance, applications, sectors and project capabilities.',
+        //     image: 'https://cdn11.bigcommerce.com/s-ljaupabhlc/images/stencil/original/image-manager/screenshot-2024-07-30-163941.png?t=1722339629',
+        //     url: 'https://store-ljaupabhlc.mybigcommerce.com/content/Surfex_Fire%20Doors.pdf'
+        // },
+        {
+            title: 'SOIF 2025 Swatch book',
+            description: 'A digital replica of our physical SOIF Swatch Book, showcasing all finishes for easy browsing, sharing, and early project planning.',
+            image: 'https://cdn11.bigcommerce.com/s-ljaupabhlc/images/stencil/original/image-manager/screenshot-2025-05-05-at-12.07.06-pm.png?t=1746428859',
+            url: 'https://store-ljaupabhlc.mybigcommerce.com/content/Surfex%202025%20Swatch_compressed.pdf'
+        },
+        
+        {
+            title: 'Hotel Showcase visual book 2025',
+            description: 'A curated showcase of SOIF finishes used across hotel bedrooms, bathrooms, receptions, and communal areas, highlighting real-world applications and design possibilities within hospitality environments.',
+            image: 'https://cdn11.bigcommerce.com/s-ljaupabhlc/images/stencil/original/image-manager/screenshot-2025-05-05-at-12.05.25-pm.png?t=1746428941',
+            url: 'https://store-ljaupabhlc.mybigcommerce.com/content/support_1739412358.pdf'
+        },
+        {
+            title: 'SOIF Visual Book 2025',
+            description: 'A visual guide showcasing SOIF finishes through detailed imagery, helping explore textures, colours, and design effects across a wide range of applications.',
+            image: 'https://cdn11.bigcommerce.com/s-ljaupabhlc/images/stencil/original/image-manager/screenshot-2025-05-05-at-12.05.58-pm.png?t=1746428935',
+            url: 'https://store-ljaupabhlc.mybigcommerce.com/content/support_1739412394.pdf'
+        },
+        //{
+        //    title: 'SOIF pattern book',
+        //    description: 'A complete overview of SOIF\'s technical performance, applications, sectors and project capabilities.',
+        //    image: 'https://cdn11.bigcommerce.com/s-ljaupabhlc/images/stencil/original/image-manager/screenshot-2025-05-05-at-12.06.39-pm.png?t=1746428926',
+        //    url: 'https://store-ljaupabhlc.mybigcommerce.com/content/support_1741830171.pdf'
+        //},
+        {
+            title: 'Surfex Commercial Brochure',
+            description: 'A comprehensive guide to SOIF, covering who we are, what we do, technical capabilities, applications, and the full range of possibilities across sectors and projects.',
+            image: 'https://cdn11.bigcommerce.com/s-ljaupabhlc/images/stencil/original/image-manager/screenshot-2025-01-07-141622.png?t=1736241420',
+            url: 'https://store-ljaupabhlc.mybigcommerce.com/content/Surfex%20Commercial%20Brochure.pdf'
+        },
+      //{
+       //     title: 'Surfex Brochure',
+       //     description: 'A complete overview of SOIF\'s technical performance, applications, sectors and project capabilities.',
+         //   image: 'https://cdn11.bigcommerce.com/s-ljaupabhlc/images/stencil/original/image-manager/screenshot-2024-07-30-163922.png?t=1722339624',
+       //     url: 'https://store-ljaupabhlc.mybigcommerce.com/content/Surfex_Brochure.pdf'
+       // },
+        {
+            title: 'SOIF Fire Doors',
+            description: 'A complete overview of SOIF\'s technical performance, applications, sectors and project capabilities.',
+            image: 'https://cdn11.bigcommerce.com/s-ljaupabhlc/images/stencil/original/image-manager/screenshot-2024-07-30-163941.png?t=1722339629',
+            url: 'https://store-ljaupabhlc.mybigcommerce.com/content/Surfex_Fire%20Doors.pdf'
+        },
+    ];
+
+    cards.forEach(card => {
+        const cardDiv = document.createElement('div');
+        cardDiv.classList.add('digital-brochure-card');
+        cardDiv.innerHTML = `
+            <div class="digital-brochure-image">
+                <img src="${card.image}" alt="${card.title}" />
+            </div>
+            <div class="digital-brochure-content">
+                <h3 class="digital-brochure-title">${card.title}</h3>
+                <p class="digital-brochure-description">${card.description}</p>
+                <a href="${card.url}" class="digital-brochure-btn">
+                    View / Download PDF
+                </a>
+            </div>
+            </div>
+        `;
+        mainDiv.appendChild(cardDiv);
+    });
+</script>
